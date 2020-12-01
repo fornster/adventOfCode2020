@@ -1,9 +1,12 @@
 import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.test.assertEquals
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
 
 class DayOneTest {
     private val dayOne = DayOne()
+
     @Test
     internal fun `returns true if two numbers add to 2020`() {
         val addsTo2020pt1 = 2019
@@ -28,15 +31,15 @@ class DayOneTest {
     @Test
     internal fun `given list of numbers find two that add to 2020 and multiply them together`() {
         val listOfNums = listOf(1721, 979, 366, 299, 675, 1456)
-        val value : Int = dayOne.findAndMultiplyTwo(listOfNums)
-        assertEquals( 514579, value)
+        val value: Int = dayOne.findAndMultiplyTwo(listOfNums)
+        assertEquals(514579, value)
     }
 
     @Test
     internal fun `given list of numbers find three that add to 2020 and multiply them together`() {
         val listOfNums = listOf(1721, 979, 366, 299, 675, 1456)
-        val value : Int = dayOne.findAndMultiplyThree(listOfNums)
-        assertEquals( 241861950, value)
+        val value: Int = dayOne.findAndMultiplyThree(listOfNums)
+        assertEquals(241861950, value)
     }
 
     @Test
@@ -48,12 +51,16 @@ class DayOneTest {
         println(findAndMultiply)
     }
 
+    @ExperimentalTime
     @Test
     internal fun actualPartTwo() {
         val file = File("./src/main/resources/dayOnePartOne.txt")
         val listOfInts = mutableListOf<Int>()
         file.forEachLine { listOfInts.add(it.toInt()) }
-        val findAndMultiply = dayOne.findAndMultiplyThree(listOfInts)
-        println(findAndMultiply)
+        val measureTime = measureTime {
+            val findAndMultiply = dayOne.findAndMultiplyThree(listOfInts)
+            println(findAndMultiply)
+        }
+        println("took $measureTime to find the answer")
     }
 }

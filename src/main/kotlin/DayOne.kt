@@ -23,15 +23,20 @@ class DayOne {
     private fun findThree(listOfNums: List<Int>): List<Int> {
         val filter = listOfNums.sorted().filter { it < 2021 }
         filter.forEach { first ->
-            filter.reversed().forEach { second ->
-                filter.drop(1); filter.forEach { third ->
-                if (first + second + third == 2020) return listOf(
-                    first,
-                    second,
-                    third
-                )
+
+            filter.reversed().forEach loop@{ second ->
+                filter.drop(1)
+                filter.forEach { third ->
+                    val sum = first + second + third
+                    if (sum == 2020) return listOf(
+                        first,
+                        second,
+                        third
+                    )
+                    if (sum < 2020) return@loop
+                }
             }
-            }
+
         }
         return listOf()
     }
