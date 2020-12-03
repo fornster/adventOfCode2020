@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.test.assertEquals
+import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
@@ -54,13 +55,18 @@ class DayOneTest {
     @ExperimentalTime
     @Test
     internal fun actualPartTwo() {
-        val file = File("./src/main/resources/dayOnePartOne.txt")
-        val listOfInts = mutableListOf<Int>()
-        file.forEachLine { listOfInts.add(it.toInt()) }
-        val measureTime = measureTime {
-            val findAndMultiply = dayOne.findAndMultiplyThree(listOfInts)
-            println(findAndMultiply)
+        val avgTime = mutableListOf<Duration>()
+                val file = File("./src/main/resources/dayOnePartOne.txt")
+                val listOfInts = mutableListOf<Int>()
+                file.forEachLine { listOfInts.add(it.toInt()) }
+        for (i in 0..10) {
+
+            val measureTime = measureTime {
+                val findAndMultiply = dayOne.findAndMultiplyThree(listOfInts)
+                println(findAndMultiply)
+            }
+            avgTime.add(measureTime)
         }
-        println("took $measureTime to find the answer")
+        println("took $avgTime to find the answer")
     }
 }
