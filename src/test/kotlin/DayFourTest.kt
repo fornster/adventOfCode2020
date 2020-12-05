@@ -59,11 +59,11 @@ data class Passport(
 //If cm, the number must be at least 150 and at most 193.
 //If in, the number must be at least 59 and at most 76.
     fun hairColorValid() : Boolean = hairColor != null && (hairColor.contains(Regex("^(#([0-9]|[a-f]){6})$")))
-    fun eyeColorValid() : Boolean = eyeColor != null && (eyeColor.contains(Regex("(amb|blu|brn|gry|grn|hzl|oth)")))
-    fun passportIdValid() : Boolean = pid != null && (pid.contains(Regex("^([0-9]{9})$")))
-}
-
 //hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
+    fun eyeColorValid() : Boolean = eyeColor != null && (eyeColor.contains(Regex("(amb|blu|brn|gry|grn|hzl|oth)")))
 //ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
+    fun passportIdValid() : Boolean = pid != null && (pid.contains(Regex("^([0-9]{9})$")))
 //pid (Passport ID) - a nine-digit number, including leading zeroes.
 //cid (Country ID) - ignored, missing or not.
+}
+
